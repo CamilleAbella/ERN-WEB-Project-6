@@ -5,7 +5,7 @@ import Message from './Message'
 export default class List extends React.Component {
 
     render(){
-        if(!this.props.array || this.props.array.length == 0)
+        if(!this.props.array || this.props.array.length === 0)
         return <Message content="Aucun élément..."/>
         return (
             <ol className='list'>

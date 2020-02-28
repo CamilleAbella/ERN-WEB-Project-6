@@ -8,15 +8,15 @@ export default class Login extends React.Component {
     }
 
     handleChange = event => {
-        const value = event.target.value
-        if(event.target.name === 'pseudo')
-        this.setState({ pseudo: value })
-        else this.setState({ password: value })
+        this.setState({ [event.target.name]: event.target.value })
     }
 
-    handleClick = event => {
+    handleSubmit = event => {
         if(event) event.preventDefault()
-        
+        this.props.connexion({
+            pseudo: this.state.pseudo,
+            password: this.state.password
+        })
     }
 
     handleKeyDown = event => {
@@ -25,13 +25,13 @@ export default class Login extends React.Component {
 
     render(){
         return (
-          <div className="login center">
-              <form className="form">
+            <div className="login center">
+                <form className="form">
                     <h3> Veuillez vous connecter </h3>
                     <input type="text" name="pseudo" placeholder="Pseudo"
-                        value={this.state.pseudo} 
-                        onKeyDown={this.handleKeyDown} 
-                        onChange={this.handleChange} 
+                        value={this.state.pseudo}
+                        onKeyDown={this.handleKeyDown}
+                        onChange={this.handleChange}
                     />
                     <input type="password" name="password" placeholder="Password"
                         value={this.state.password} 
@@ -39,10 +39,10 @@ export default class Login extends React.Component {
                         onChange={this.handleChange}
                     />
                     <input type="submit" className="button" value="Login"
-                        onClick={this.handleClick} 
+                        onClick={this.handleSubmit}
                     />
-              </form>
-          </div>
+                </form>
+            </div>
         )
     }
   }
