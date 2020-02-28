@@ -3,7 +3,7 @@ import React from 'react'
 export default class Login extends React.Component {
 
     state = {
-        pseudo: '',
+        username: '',
         password: ''
     }
 
@@ -14,13 +14,9 @@ export default class Login extends React.Component {
     handleSubmit = event => {
         if(event) event.preventDefault()
         this.props.connexion({
-            pseudo: this.state.pseudo,
+            username: this.state.username,
             password: this.state.password
         })
-    }
-
-    handleKeyDown = event => {
-        this.handleClick()
     }
 
     render(){
@@ -28,17 +24,15 @@ export default class Login extends React.Component {
             <div className="login center">
                 <form className="form">
                     <h3> Veuillez vous connecter </h3>
-                    <input type="text" name="pseudo" placeholder="Pseudo"
-                        value={this.state.pseudo}
-                        onKeyDown={this.handleKeyDown}
+                    <input type="text" name="username" placeholder="Pseudo"
+                        value={this.state.username}
                         onChange={this.handleChange}
                     />
-                    <input type="password" name="password" placeholder="Password"
+                    <input type="password" name="password" placeholder="Mot de passe"
                         value={this.state.password} 
-                        onKeyDown={this.handleKeyDown} 
                         onChange={this.handleChange}
                     />
-                    <input type="submit" className="button" value="Login"
+                    <input type="submit" className="button" value="Se connecter"
                         onClick={this.handleSubmit}
                     />
                 </form>

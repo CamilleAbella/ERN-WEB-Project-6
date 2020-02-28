@@ -5,8 +5,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import './style.css'
 
 import Home from './pages/Home'
-import Profile from './pages/Profile'
-import Recettes from './pages/Recettes'
 import NotFound from './pages/NotFound'
 
 const Root = () => {
@@ -15,8 +13,6 @@ const Root = () => {
       <Switch>
         <Route exact path="/" component={Home}/>
         <Route exact path="/home" component={Home}/>
-        <Route exact path="/recettes" component={<Home page={Recettes}/>}/>
-        <Route exact path="/profile" component={<Home page={Profile}/>}/>
         <Route component={NotFound}/>
       </Switch>
     </BrowserRouter>

@@ -7,16 +7,16 @@ import config from '../config.json'
 export default class Profile extends React.Component {
 
     state = {
-        user: null
+        username: ''
     }
 
     fetchUser(){
         axios.get( config.api + 'profile', {
-            params: { token: this.props.token }
+            headers: { Authorization: 'Bearer ' + this.props.token }
         })
             .then( res => {
                 if(res.status === 200)
-                this.setState({ user: res.data })
+                this.setState({ username: res.data.username })
             })
             .catch(console.error)
     }
@@ -26,10 +26,10 @@ export default class Profile extends React.Component {
     }
 
     render(){
-        if(this.state.user)
+        if(this.state.username)
         return <Page content={
             <div className="center">
-                <h2> Profile de {this.state.user.pseudo} </h2>
+                <h2> Profile de {this.state.username} </h2>
             </div>
         }/>
     }

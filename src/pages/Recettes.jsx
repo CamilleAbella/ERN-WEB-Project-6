@@ -2,9 +2,10 @@
 import React from 'react'
 import axios from 'axios'
 import Page from './Page'
-import Recette from './Recette'
+import Recette from '../components/Recette'
 import List from '../components/List'
 import config from '../config.json'
+import { Link } from 'react-router-dom'
 
 export default class Recettes extends React.Component {
 
@@ -14,11 +15,11 @@ export default class Recettes extends React.Component {
 
     fetchRecettes(){
         axios.get( config.api + 'recettes', {
-            params: { token: this.props.token }
+            headers: { Authorization: 'Bearer ' + this.props.token },
         })
             .then( res => {
                 if(res.status === 200)
-                this.setState({ recettes: res.data.recettes })
+                this.setState({ recettes: res.data })
             })
             .catch(console.error)
     }
@@ -29,9 +30,12 @@ export default class Recettes extends React.Component {
 
     render() {
         return <Page content={
-            <List array={this.state.recettes.map( recette => {
-                return <Recette recette={recette} token={this.props.token} preview={true} edit={false}/>
-            })}/>
+            <div>
+                <Recette token={this.props.token} edit={true}/>
+                <List array={this.state.recettes.map( recette => {
+                    return <Recette recette={recette} token={this.props.token} preview={true} edit={false}/>
+                })}/>
+            </div>
         }/>
     }
 

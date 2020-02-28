@@ -1,4 +1,4 @@
 {
-    "api":"https://localhost:2834/",
-    "app":"http://localhost:3000/"
+    "api":"http://127.0.0.1:2834/",
+    "app":"http://127.0.0.1:3000/"
 }
